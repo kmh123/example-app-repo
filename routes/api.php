@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//Route::resource('saveincomeApi', saveincomeApiController::class);
+
+
+Route::post('/register', [App\Http\Controllers\Auth\UserAuthController::class, 'register']);
+Route::post('/login', [App\Http\Controllers\Auth\UserAuthController::class, 'login']);
+
+Route::apiResource('/employee', 'App\Http\Controllers\EmployeeController')->middleware('auth:api');
