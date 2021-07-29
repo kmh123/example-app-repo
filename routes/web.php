@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,24 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/dbkmh', [App\Http\Controllers\DbkmhController::class, 'dbkmh'])->name('testkmh');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+/******** for testing  */
+
+
+Route::get('/users/{user}', function (User $user) {
+    return $user->email;
+});
+
+Route::fallback(function () {
+    return 'not found';
+});
+
+
